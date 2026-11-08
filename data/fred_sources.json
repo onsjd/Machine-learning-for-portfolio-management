@@ -1,0 +1,38 @@
+[
+  {
+    "series_id": "VIXCLS",
+    "source_page": "https://fred.stlouisfed.org/series/VIXCLS",
+    "download_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS&cosd=1999-01-01&coed=2025-12-31",
+    "retrieved_on": "2026-11-07",
+    "sha256": "b587c3478ee03ccb21a8e5d7582baaa4b921ff6aaef552551f6dd9cb95a81db0",
+    "first_valid_daily": "1999-01-04",
+    "last_valid_daily": "2025-12-31"
+  },
+  {
+    "series_id": "DTWEXBGS",
+    "source_page": "https://fred.stlouisfed.org/series/DTWEXBGS",
+    "download_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DTWEXBGS&cosd=1999-01-01&coed=2025-12-31",
+    "retrieved_on": "2026-11-07",
+    "sha256": "1569a280c509d0e2e702c0c5fb410415e2c137748a689f430a0116dcb24bc5ed",
+    "first_valid_daily": "2006-01-02",
+    "last_valid_daily": "2025-12-31"
+  },
+  {
+    "series_id": "DGS10",
+    "source_page": "https://fred.stlouisfed.org/series/DGS10",
+    "download_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10&cosd=1999-01-01&coed=2025-12-31",
+    "retrieved_on": "2026-11-07",
+    "sha256": "85ffdfe56808d9f340bc267c57c0d578ebae48bc73bc8763c581b891b50cac41",
+    "first_valid_daily": "1999-01-04",
+    "last_valid_daily": "2025-12-31"
+  },
+  {
+    "series_id": "DGS2",
+    "source_page": "https://fred.stlouisfed.org/series/DGS2",
+    "download_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS2&cosd=1999-01-01&coed=2025-12-31",
+    "retrieved_on": "2026-11-07",
+    "sha256": "cffee922bb4c42ad21af44f12d453c87afb52f62e6352e4aedcefc89af93ac0a",
+    "first_valid_daily": "1999-01-04",
+    "last_valid_daily": "2025-12-31"
+  }
+]

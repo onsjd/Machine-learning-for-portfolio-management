@@ -1,0 +1,14 @@
+regime,test_months,model
+1,46,KMeans price
+2,11,KMeans price
+0,1,KMeans price
+3,44,GMM price
+2,14,GMM price
+3,29,KMeans price_fred
+2,20,KMeans price_fred
+1,8,KMeans price_fred
+0,1,KMeans price_fred
+0,32,GMM price_fred
+1,23,GMM price_fred
+2,2,GMM price_fred
+3,1,GMM price_fred
