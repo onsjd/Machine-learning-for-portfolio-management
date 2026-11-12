@@ -1,5 +1,7 @@
 # Commodity market regimes and dynamic portfolio allocation
 
+**Notebook à rendre : `Final_Research_Notebook.ipynb`.** Il regroupe l'ensemble du projet (régimes K-Means/GMM, FRED, sentiment des news, portefeuilles) en deux expériences chronologiques (juil. 2016–déc. 2018 et mars 2021–déc. 2025). Il est autonome : il lit les données du dépôt si elles sont présentes, sinon il les télécharge depuis des révisions figées, avec vérification SHA-256 (connexion internet nécessaire pour les news). Les notebooks 01–05 ci-dessous restent disponibles comme historique de travail.
+
 Données réelles World Bank et notebook exécuté, sans news ni sentiment.
 
 ## Démarrage
