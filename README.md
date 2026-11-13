@@ -1,68 +1,34 @@
 # Commodity market regimes and dynamic portfolio allocation
 
-**Notebook à rendre : `Final_Research_Notebook.ipynb`.** Il regroupe l'ensemble du projet (régimes K-Means/GMM, FRED, sentiment des news, portefeuilles) en deux expériences chronologiques (juil. 2016–déc. 2018 et mars 2021–déc. 2025). Il est autonome : il lit les données du dépôt si elles sont présentes, sinon il les télécharge depuis des révisions figées, avec vérification SHA-256 (connexion internet nécessaire pour les news). Les notebooks 01–05 ci-dessous restent disponibles comme historique de travail.
+**Notebook à rendre : [Final_Research_Notebook.ipynb](Final_Research_Notebook.ipynb).**
 
-Données réelles World Bank et notebook exécuté, sans news ni sentiment.
+Projet de cours — Ons Jdey et Senghak Rou, ENSAE, novembre 2026.
 
-## Démarrage
-1. Cloner ce dépôt : `git clone https://github.com/onsjd/Machine-learning-for-portfolio-management.git`.
-2. Ouvrir un terminal à la racine du dépôt.
-3. Facultatif : créer un environnement `python -m venv .venv`, puis l’activer.
-4. Installer : `pip install -r requirements.txt`.
-5. Lancer : `jupyter lab 01_market_regimes.ipynb`, puis Run All.
+Le notebook autonome rassemble les prix World Bank, les indicateurs FRED, le sentiment annoté des actualités sur l'or, les régimes K-Means/GMM et les portefeuilles de Markowitz conditionnés. Les cinq actifs sont le Brent, le gaz américain, l'or, l'argent et le cuivre.
 
-Aucune clé API et aucun téléchargement requis pour exécuter le notebook.
-Les graphiques et tableaux sont déjà enregistrés dans les cellules.
+## Exécution
 
-## Contenu
-- `data/raw/world_bank_monthly.xlsx` : fichier original téléchargé.
-- `data/sources.json` : liens, unités, date et empreinte SHA-256.
-- `data/processed/prices_full_history.csv` : historique disponible des cinq séries.
-- `data/processed/prices_2000_2025.csv` : échantillon étudié.
-- `data/processed/features.csv` : variables calculées par le notebook.
-- `01_market_regimes.ipynb` : exploration, K-Means, GMM, validation temporelle, interprétation.
-- `results/` : graphiques et résultats CSV.
+Avec Python 3.12, installer `pip install -r requirements.txt`, ouvrir `jupyter lab Final_Research_Notebook.ipynb`, puis redémarrer le noyau et exécuter toutes les cellules. Les versions testées figurent dans la section 7 et `environment_used.json`.
 
-## Méthodologie
-Train : jusqu'à fin 2015. Validation : 2016–2020. Test : 2021–2025.
-Les variables contiennent un historique glissant de 12 mois, d'où une période de chauffe.
-Standardisation apprise sur train seulement pour la sélection, puis réapprise sur train + validation pour le test.
-Le nombre de groupes K-Means est choisi par silhouette en validation ; celui du GMM par BIC sur train.
-Modèles figés pendant le test. Pas d’optimisation de portefeuille dans cette première partie.
+Aucune clé API n'est nécessaire. Les fichiers locaux sont utilisés lorsqu'ils existent ; sinon, les données sont téléchargées depuis des révisions figées et vérifiées par SHA-256. Une connexion internet est nécessaire pour les news lorsqu'elles ne sont pas disponibles localement. Le notebook ne nécessite pas l'exécution des notebooks historiques.
 
-## Limites
-Prix moyens mensuels physiques, non rendements investissables. Le fichier est un snapshot révisé et non une base de données disponible en temps réel à chaque date.
-Ne pas interpréter les diagnostics de prix comme une performance de futures/ETF. La date de publication doit être prise en compte avant toute stratégie.
-Les modèles de régimes ne garantissent pas de prévisibilité. Aucun résultat n'a été fabriqué.
+## Protocole et résultats
 
-## Partie 2 : comparaison de portefeuilles
-Ouvrir `02_portfolio_comparison.ipynb`, indépendant du premier notebook.
-Quatre stratégies : équipondération, Markowitz classique, Markowitz avec K-Means et Markowitz avec GMM.
-Test commun mars 2021–décembre 2025 ; modèles figés fin 2020 ; signaux et historique décalés de deux mois.
-Fenêtre 120 mois ; long only ; somme des poids 1 ; plafond 60% ; gamma 5 ; régularisation des moyennes et covariances.
-Coûts 10 bp sur la somme des transactions absolues, poids pré-trade corrigés de leur dérive. Sensibilité 0/10/25 bp.
-Graphiques, poids, rendements, métriques, audit temporel et bootstrap apparié disponibles dans `results/portfolios/`.
-Ces comparaisons sont illustratives sur prix moyens World Bank : aucune performance investissable n'est revendiquée.
+- Expérience A : entraînement avril 2006–2012, validation 2013–2015, évaluation juillet 2016–décembre 2018 (30 mois), avec sentiment.
+- Expérience B : entraînement avril 2006–2015, validation 2016–2020, évaluation mars 2021–décembre 2025 (58 mois), sans sentiment.
+- Modèles figés avant évaluation, décalage de deux mois, historique glissant de 120 mois, portefeuilles long-only, plafond initial 60 %, coûts de 10 points de base.
+- Les régimes modifient les allocations, mais aucun gain robuste et répété n'est établi. Les conclusions concernent ce protocole et cet indice de sentiment sur l'or.
 
-## Partie 3 : World Bank + FRED (version mise à jour)
-Commencer par `03_fred_regimes_portfolios.ipynb` pour la comparaison complète avec FRED. Il est indépendant et déjà exécuté.
-FRED : VIXCLS, DTWEXBGS, DGS10, DGS2. CSV quotidiens réels inclus dans `data/raw/fred/`. Agrégation mensuelle et sources documentées.
-Six stratégies sur les mêmes dates, avec/sans FRED pour chaque algorithme ; indicateurs explicatifs seulement, les actifs restent les cinq commodities.
-Le dollar commence en 2006 : les modèles avec/sans FRED sont entraînés sur une période commune réduite pour isoler l’apport des indicateurs.
-Les deux anciens notebooks et leurs résultats restent disponibles. Les comparaisons correspondantes diffèrent parce que l’historique de clustering est différent.
-Le test déjà inspecté rend cette nouvelle comparaison exploratoire. Aucune conclusion d’investissement ne doit être tirée de ces prix moyens mensuels.
-Résultats, comparaisons appariées et coûts dans `results/fred_extension/`. Aucune news.
+## Analyses exploratoires supplémentaires — section 5.2
 
-## Projet de cours
-Équipe : Ons Jdey et Senghak Rou.
-Sujet : détection des régimes de marché et sentiment des news pour l’allocation dynamique en matières premières.
-Référence du cours : https://github.com/schampon/skfin/tree/master/nbs
+1. Rendements seuls, covariance seule ou les deux : régimes de prix, deux algorithmes et deux périodes.
+2. Avec/sans sentiment à nombre de groupes identique : deux algorithmes, avec/sans FRED, k = 2, 3 et 4.
+3. Plafonds de concentration de 40 %, 50 % et 60 % : chaque stratégie est comparée à Markowitz sous le même plafond.
 
-## État du projet
-Les trois notebooks, données sources et résultats existants sont inclus.
-La partie news/sentiment et son évaluation incrémentale restent à développer.
-Le HMM et la comparaison risk parity ne sont pas implémentés dans cette version.
+Toutes les variantes sont rapportées, sans sélectionner la meilleure après observation des performances. Les intervalles bootstrap sont exploratoires et non corrigés pour comparaisons multiples.
 
-## Reproduire les calculs sans Jupyter
-`python run_notebooks.py` exécute les cellules Python des trois notebooks dans l’ordre, avec leurs assertions.
-Les résultats et graphiques sont régénérés dans `results/`. Les sorties des notebooks restent celles du snapshot original ; utiliser Jupyter Run All pour les actualiser.
+## Limites et historique
+
+Les variations de prix moyens mensuels ne sont pas des rendements directement investissables. Les snapshots révisés, les annotations rétrospectives et l'indice dollar reconstruit empêchent une interprétation entièrement point-in-time. Les deux fenêtres avaient déjà été examinées ; elles ne constituent pas un nouvel échantillon de confirmation.
+
+Les notebooks 01–05, les données du dépôt et les anciens résultats restent disponibles comme historique. `run_notebooks.py` exécute seulement les notebooks 01–03 ; pour le rendu complet, utiliser le notebook final. HMM et risk parity ne sont pas implémentés.
