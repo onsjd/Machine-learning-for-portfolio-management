@@ -1,4 +1,4 @@
-"""Run the Python cells of the bundled notebooks (no Jupyter needed)."""
+"""Run historical notebook Python cells from the repository root (no Jupyter needed)."""
 import argparse
 import json
 import os
@@ -11,8 +11,8 @@ def main():
     root = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("notebooks", nargs="*", default=[
-        "01_market_regimes.ipynb", "02_portfolio_comparison.ipynb",
-        "03_fred_regimes_portfolios.ipynb"])
+        "old_work/01_market_regimes.ipynb", "old_work/02_portfolio_comparison.ipynb",
+        "old_work/03_fred_regimes_portfolios.ipynb"])
     args = parser.parse_args()
     os.chdir(root)
     for name in args.notebooks:

@@ -6,6 +6,13 @@ Projet de cours — Ons Jdey et Senghak Rou, ENSAE, novembre 2026.
 
 Le notebook autonome rassemble les prix World Bank, les indicateurs FRED, le sentiment annoté des actualités sur l'or, les régimes K-Means/GMM et les portefeuilles de Markowitz conditionnés. Les cinq actifs sont le Brent, le gaz américain, l'or, l'argent et le cuivre.
 
+## Fichier à rendre et organisation
+
+- **À rendre : `Final_Research_Notebook.ipynb`**, seul notebook à la racine.
+- `old_work/` : cinq notebooks intermédiaires conservés pour la traçabilité.
+- `data/` : données sources ; à conserver dans le dépôt.
+- `results/` : sorties historiques, non nécessaires à l’exécution du notebook final.
+
 ## Exécution
 
 Avec Python 3.12, installer `pip install -r requirements.txt`, ouvrir `jupyter lab Final_Research_Notebook.ipynb`, puis redémarrer le noyau et exécuter toutes les cellules. Les versions testées figurent dans la section 7 et `environment_used.json`.
@@ -31,4 +38,4 @@ Toutes les variantes sont rapportées, sans sélectionner la meilleure après ob
 
 Les variations de prix moyens mensuels ne sont pas des rendements directement investissables. Les snapshots révisés, les annotations rétrospectives et l'indice dollar reconstruit empêchent une interprétation entièrement point-in-time. Les deux fenêtres avaient déjà été examinées ; elles ne constituent pas un nouvel échantillon de confirmation.
 
-Les notebooks 01–05, les données du dépôt et les anciens résultats restent disponibles comme historique. `run_notebooks.py` exécute seulement les notebooks 01–03 ; pour le rendu complet, utiliser le notebook final. HMM et risk parity ne sont pas implémentés.
+Les notebooks intermédiaires 01–05 sont regroupés dans [`old_work/`](old_work/README.md). Ils documentent les étapes de recherche et ne sont pas nécessaires pour exécuter ou évaluer le notebook final. Les données et résultats historiques restent disponibles. `run_notebooks.py` exécute seulement les notebooks historiques 01–03 dans `old_work/` ; pour le rendu complet, utiliser le notebook final. HMM et risk parity ne sont pas implémentés.
